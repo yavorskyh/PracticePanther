@@ -52,4 +52,41 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\PP.Library\PP.Library.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\AddClient.xaml.cs">
+	    <DependentUpon>AddClient.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MainPage.xaml.cs">
+	    <DependentUpon>MainPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ClientView.xaml.cs">
+	    <DependentUpon>ClientView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\EditClient.xaml.cs">
+	    <DependentUpon>EditClient.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ProjectView.xaml.cs">
+	    <DependentUpon>ProjectView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AddClient.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ClientView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EditClient.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProjectView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

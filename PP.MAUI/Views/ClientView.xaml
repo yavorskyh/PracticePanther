@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.ClientView"
+             NavigatedTo="OnArrived">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Entry Grid.Column="0" Text="{Binding Path=Query}"></Entry>
+                <Button Grid.Column="1" Text="Search" Clicked="SearchClicked"></Button>
+
+            </Grid>
+
+
+            <Grid Grid.Row="1">
+                <ListView
+                    ItemsSource="{Binding Path=Clients, Mode=TwoWay}"
+                    SelectedItem="{Binding Path=SelectedClient, Mode=TwoWay}">
+
+                </ListView>
+            </Grid>
+
+
+            <Grid Grid.Row="2">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Text="Add" Clicked="AddClicked"></Button>
+                <Button Grid.Column="1" Text="Edit" Clicked="EditClicked"></Button>
+                <Button Grid.Column="2" Text="Delete" Clicked="DeleteClicked"></Button>
+
+            </Grid>
+            <Button Grid.Row="3" Text="Go Back" Clicked="GoBackClicked"></Button>
+        </Grid>
+        
+    </ScrollView>
+</ContentPage>

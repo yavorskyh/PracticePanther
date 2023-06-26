@@ -1,20 +1,21 @@
-﻿using PracticePantherMAUI.ViewModels;
-
-namespace PracticePantherMAUI
+﻿namespace PP.MAUI
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void ClientsClicked(object sender, EventArgs e)
         {
-            
+            Shell.Current.GoToAsync("//Clients");
+        }
+
+        private void ProjectsClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//Projects");
         }
     }
 }

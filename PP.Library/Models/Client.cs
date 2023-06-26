@@ -13,23 +13,24 @@ namespace PP.Library.Models
         public DateTime OpenDate { get; set; }
         public DateTime CloseDate { get; set; }
         public Boolean isActive { get; set; }
-        public string Name { get; set; }
-        public string Notes { get; set; }
+        public string? Name { get; set; }
+        public string? Notes { get; set; }
 
-        public Client()
-        {
-            Name = string.Empty;
-            Notes = string.Empty;
-        }
+      
 
         public override string ToString() 
         {
-            return $"\nID: {Id}\n" +
-                $"OpenDate: {OpenDate}\n" +
-                $"CloseDate: {CloseDate}\n" +
-                $"isActive: {isActive}\n" +
+            return $"{Id}.  {Name}";
+        }
+
+        public string GetDetails()
+        {
+            return $"ID: {Id}\n" +
                 $"Name: {Name}\n" +
-                $"Notes: {Notes}\n";
+                $"Open Date: {OpenDate}\n" +
+                $"Close Date: {CloseDate}\n" +
+                $"isActive: {isActive}\n" +
+                $"Notes: {Notes}";
         }
     }
 }

@@ -4,11 +4,28 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PP.MAUI"
+    xmlns:local2="clr-namespace:PP.MAUI.Views"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellContent
+        Title="Client Management"
+        ContentTemplate="{DataTemplate local2:ClientView}"
+        Route="Clients" />
+    <ShellContent
+        Title="Project Management"
+        ContentTemplate="{DataTemplate local2:ProjectView}"
+        Route="Projects" />
+    <ShellContent
+        Title="Project Management"
+        ContentTemplate="{DataTemplate local2:AddClient}"
+        Route="AddClient" />
+    <ShellContent
+        Title="Client Management"
+        ContentTemplate="{DataTemplate local2:EditClient}"
+        Route="EditClient" />
 
 </Shell>
