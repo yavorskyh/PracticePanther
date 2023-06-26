@@ -2,7 +2,7 @@ using PP.Library.Models;
 using PP.MAUI.ViewModels;
 
 namespace PP.MAUI.Views;
-
+//test
 [QueryProperty(nameof(ClientID), "ClientID")]
 public partial class EditClient : ContentPage
 {
