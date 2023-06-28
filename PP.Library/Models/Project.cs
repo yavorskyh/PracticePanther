@@ -25,13 +25,9 @@ namespace PP.Library.Models
 
         public override string ToString()
         {
-            return $"\nID: {Id}\n" +
-                $"OpenDate: {OpenDate}\n" +
-                $"CloseDate: {CloseDate}\n" +
-                $"isActive: {isActive}\n" +
-                $"Name: {ShortName}\n" +
-                $"Notes: {LongName}\n" +
-                $"ClientID: {ClientID}\n";
+            return $"{Id}. {ShortName}\n" +
+                $"ClientID: {ClientID}\n" +
+                $"Is Open?: {isActive}";
         }
     }
 }

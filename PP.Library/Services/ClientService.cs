@@ -46,6 +46,10 @@ namespace PP.Library.Services
         {
             if (client != null)
             {
+                if (client.Id == 0)
+                {
+                    client.Id = LastId + 1;
+                }
                 clients.Add(client);
             }
         }

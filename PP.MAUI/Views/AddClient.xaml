@@ -24,11 +24,6 @@
             <Entry Text="{Binding Path=Model.Notes}"></Entry>
 
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                <Label Text="Is this Client Active?" VerticalOptions="Center" />
-                <Switch IsToggled="{Binding Path=Model.isActive}" />
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                 <Button Text="Submit" Clicked="SubmitClicked"></Button>
                 <Button Text="Cancel" Clicked="CancelClicked"></Button>
             </StackLayout>

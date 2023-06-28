@@ -27,5 +27,29 @@
         Title="Client Management"
         ContentTemplate="{DataTemplate local2:EditClient}"
         Route="EditClient" />
+    <ShellContent
+        Title="Project Management"
+        ContentTemplate="{DataTemplate local2:AddProject}"
+        Route="AddProject" />
+    <ShellContent
+        Title="Client Management"
+        ContentTemplate="{DataTemplate local2:EditProject}"
+        Route="EditProject" />
+    <ShellContent
+        Title="Employee Management"
+        ContentTemplate="{DataTemplate local2:EmployeeView}"
+        Route="Employees" />
+    <ShellContent
+        Title="Employee Management"
+        ContentTemplate="{DataTemplate local2:EmployeeDetail}"
+        Route="EmployeeDetail" />
+    <ShellContent
+        Title="Timer Management"
+        ContentTemplate="{DataTemplate local2:TimeView}"
+        Route="Time" />
+    <ShellContent
+        Title="Timer Management"
+        ContentTemplate="{DataTemplate local2:TimerDetail}"
+        Route="TimerDetail" />
 
 </Shell>

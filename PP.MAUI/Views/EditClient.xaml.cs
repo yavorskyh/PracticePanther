@@ -14,8 +14,15 @@ public partial class EditClient : ContentPage
 
     private void SubmitClicked(object sender, EventArgs e)
     {
-        (BindingContext as ClientViewModel).UpdateClient();
-        Shell.Current.GoToAsync("//Clients");
+        if (!(BindingContext as ClientViewModel).UpdateClient())
+        {
+            DisplayAlert("Error", "Cannot close client. All projects must be closed.", "OK");
+        }
+        else
+        {
+            Shell.Current.GoToAsync("//Clients");
+        }
+        
     }
 
     private void CancelClicked(object sender, EventArgs e)

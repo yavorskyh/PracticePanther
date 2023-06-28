@@ -17,7 +17,8 @@ public partial class ClientView : ContentPage
 
     private void DeleteClicked(object sender, EventArgs e)
     {
-        (BindingContext as ClientViewModel).DeleteClient();
+        if (!(BindingContext as ClientViewModel).DeleteClient())
+            DisplayAlert("Error", "Please delete all projects before deleting", "OK");
     }
 
     private void AddClicked(object sender, EventArgs e)
@@ -28,7 +29,11 @@ public partial class ClientView : ContentPage
     private void EditClicked(object sender, EventArgs e)
     {
         var clientId = (BindingContext as ClientViewModel).SelectedClient?.Id ?? 0;
-        Shell.Current.GoToAsync($"//EditClient?ClientID={clientId}");
+
+        if(clientId == 0) 
+            DisplayAlert("Error", "Please Select a Client", "OK"); 
+        else
+            Shell.Current.GoToAsync($"//EditClient?ClientID={clientId}");
     }
 
     private void GoBackClicked(object sender, EventArgs e)

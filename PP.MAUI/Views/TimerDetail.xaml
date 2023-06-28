@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.TimerDetail"
+             NavigatedTo="OnArriving">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <Label Text="Edit the Time Below..."></Label>
+            <Label Text="Date:"></Label>
+            <DatePicker Date="{Binding Path=Model.Date}"></DatePicker>
+
+            <Label Text="Narrative:"></Label>
+            <Entry Text="{Binding Path=Model.Narrative}"></Entry>
+
+            <Label Text="Hours:"></Label>
+            <Entry Text="{Binding Path=Model.Hours}"></Entry>
+
+            <Label Text="Project ID:"></Label>
+            <Entry Text="{Binding Path=Model.ProjectId}"></Entry>
+
+            <Label Text="Employee ID:"></Label>
+            <Entry Text="{Binding Path=Model.EmployeeId}"></Entry>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                <Button Text="Submit" Clicked="SubmitClicked"></Button>
+                <Button Text="Cancel" Clicked="CancelClicked"></Button>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

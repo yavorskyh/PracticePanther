@@ -69,6 +69,24 @@
 	  <Compile Update="Views\EditClient.xaml.cs">
 	    <DependentUpon>EditClient.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\AddProject.xaml.cs">
+	    <DependentUpon>AddProject.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\EditProject.xaml.cs">
+	    <DependentUpon>EditProject.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\EmployeeDetail.xaml.cs">
+	    <DependentUpon>EmployeeDetail.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TimerDetail.xaml.cs">
+	    <DependentUpon>TimerDetail.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TimeView.xaml.cs">
+	    <DependentUpon>TimeView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\EmployeeView.xaml.cs">
+	    <DependentUpon>EmployeeView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ProjectView.xaml.cs">
 	    <DependentUpon>ProjectView.xaml</DependentUpon>
 	  </Compile>
@@ -82,6 +100,24 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\EditClient.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AddProject.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EditProject.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EmployeeDetail.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TimerDetail.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TimeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EmployeeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProjectView.xaml">

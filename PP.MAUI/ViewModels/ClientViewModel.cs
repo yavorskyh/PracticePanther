@@ -6,9 +6,18 @@ using PP.Library.Services;
 
 namespace PP.MAUI.ViewModels
 {
-    internal class ClientViewModel : INotifyPropertyChanged
+    public class ClientViewModel : INotifyPropertyChanged
     {
         public Client Model { get; set; }
+        public int ClientID { get; set; } 
+        public List<Project> Projects 
+        {
+            get
+            {
+                return new List<Project>(ProjectService.Current.SearchByClientID(ClientID));
+            }
+        }
+
         public ObservableCollection<Client> Clients
         {
             get
@@ -23,15 +32,20 @@ namespace PP.MAUI.ViewModels
 
         public Client SelectedClient { get; set; }
 
-        public void DeleteClient()
+        public bool DeleteClient()
         {
             if (SelectedClient != null) 
-            { 
+            {
+                List<Project> Projects = ProjectService.Current.Projects.Where(p => p.ClientID == SelectedClient.Id).ToList();
+                if (Projects.Count > 0)
+                    return false;
+
                 ClientService.Current.DeleteClient(SelectedClient.Id); 
                 SelectedClient = null;
                 NotifyPropertyChanged(nameof(SelectedClient));
                 NotifyPropertyChanged(nameof(Clients));
             }
+            return true;
         }
         
         public string Query { get; set; }
@@ -45,14 +59,31 @@ namespace PP.MAUI.ViewModels
             ClientService.Current.AddClient(Model);
         }
 
-        public void UpdateClient() 
+        public bool UpdateClient() 
         {
+            if (!Model.isActive)
+            {
+                if (HasOpenProjects())
+                    return false;
+            }
+
             ClientService.Current.UpdateClient(Model);
+            return true;
         }
 
         public void RefreshClients()
         {
             NotifyPropertyChanged(nameof(Clients));
+        }
+        
+        public bool HasOpenProjects()
+        {
+            foreach (Project project in Projects)
+            {
+                if (project.isActive)
+                    return true;
+            }
+            return false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -67,12 +98,13 @@ namespace PP.MAUI.ViewModels
             Model = new Client();
             Model.OpenDate = DateTime.Now;
             Model.CloseDate = DateTime.Now;
+            Model.isActive = true;
         }
 
         public ClientViewModel(int clientId)
         {
             Model = ClientService.Current.GetClient(clientId);
+            ClientID = clientId;
         }
     }
-
 }
