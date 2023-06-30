@@ -1,3 +1,4 @@
+using PP.Library.Models;
 using PP.MAUI.ViewModels;
 
 namespace PP.MAUI.Views;
@@ -34,6 +35,16 @@ public partial class ClientView : ContentPage
             DisplayAlert("Error", "Please Select a Client", "OK"); 
         else
             Shell.Current.GoToAsync($"//EditClient?ClientID={clientId}");
+    }
+
+    private void ProjectsClicked(object sender, EventArgs e)
+    {
+        var clientId = (BindingContext as ClientViewModel).SelectedClient?.Id ?? 0;
+
+        if (clientId == 0)
+            DisplayAlert("Error", "Please Select a Client", "OK");
+        else
+            Shell.Current.GoToAsync($"//Projects?ClientID={clientId}");
     }
 
     private void GoBackClicked(object sender, EventArgs e)

@@ -21,9 +21,6 @@
             <Label Text="Notes:"></Label>
             <Entry Text="{Binding Path=Model.LongName}"></Entry>
 
-            <Label Text="Client ID:"></Label>
-            <Entry Text="{Binding Path=Model.ClientID}"></Entry>
-
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                 <Button Text="Submit" Clicked="SubmitClicked"></Button>
                 <Button Text="Cancel" Clicked="CancelClicked"></Button>

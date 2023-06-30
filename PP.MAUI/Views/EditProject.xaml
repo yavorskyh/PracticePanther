@@ -10,8 +10,6 @@
             Padding="30,0"
             VerticalOptions="Center">
             <Label Text="Edit the Project Below..."></Label>
-            <Label Text="Id:"></Label>
-            <Entry Text="{Binding Path=Model.Id}"></Entry>
             <Label Text="Open Date:"></Label>
             <DatePicker Date="{Binding Path=Model.OpenDate}"></DatePicker>
 
