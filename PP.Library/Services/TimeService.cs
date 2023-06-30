@@ -79,14 +79,6 @@ namespace PP.Library.Services
                 timeToUpdate.EmployeeId = time.EmployeeId;
             }
         }
-
-        private int LastId
-        {
-            get
-            {
-                return times.Any() ? times.Select(p => p.ProjectId).Max() : 0;
-            }
-        }
     }
 }
 

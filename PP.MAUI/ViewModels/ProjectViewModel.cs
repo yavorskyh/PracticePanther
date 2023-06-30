@@ -62,6 +62,7 @@ namespace PP.MAUI.ViewModels
         public ProjectViewModel()
         {
             Model = new Project();
+            Model.Id = 0;
             Model.OpenDate = DateTime.Now;
             Model.CloseDate = DateTime.Now;
             Model.isActive = true;

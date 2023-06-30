@@ -96,6 +96,7 @@ namespace PP.MAUI.ViewModels
         public ClientViewModel() 
         {
             Model = new Client();
+            Model.Id = 0;
             Model.OpenDate = DateTime.Now;
             Model.CloseDate = DateTime.Now;
             Model.isActive = true;

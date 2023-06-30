@@ -51,6 +51,7 @@ namespace PP.Library.Services
                 }
                 else
                 {
+                    employee.Id = LastId + 1;
                     employees.Add(employee);
                 }
             }

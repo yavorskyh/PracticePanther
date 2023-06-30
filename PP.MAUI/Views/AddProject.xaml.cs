@@ -20,4 +20,9 @@ public partial class AddProject : ContentPage
     {
         Shell.Current.GoToAsync("//Projects");
     }
+
+    private void OnArriving(object sender, EventArgs e)
+    {
+        BindingContext = new ProjectViewModel();
+    }
 }

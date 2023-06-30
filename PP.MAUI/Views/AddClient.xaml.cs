@@ -8,7 +8,6 @@ namespace PP.MAUI.Views
         public AddClient()
         {
             InitializeComponent();
-            BindingContext = new ClientViewModel();
         }
 
         private void SubmitClicked(object sender, EventArgs e)
@@ -20,6 +19,11 @@ namespace PP.MAUI.Views
         private void CancelClicked(object sender, EventArgs e)
         {
             Shell.Current.GoToAsync("//Clients");
+        }
+
+        private void OnArriving(object sender, EventArgs e) 
+        { 
+            BindingContext = new ClientViewModel(); 
         }
     }
 }

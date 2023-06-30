@@ -68,6 +68,7 @@ namespace PP.MAUI.ViewModels
         public EmployeeViewModel()
         {
             Model = new Employee();
+            Model.Id = 0;
         }
 
         public EmployeeViewModel(int EmployeeId)

@@ -2,15 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PP.MAUI.Views.AddProject"
-             Title="Project Management">
+             Title="Project Management"
+             NavigatedTo="OnArriving">
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
             <Label Text="Create a Project Below..."></Label>
-            <Label Text="Id:"></Label>
-            <Entry Text="{Binding Path=Model.Id}"></Entry>
             <Label Text="Open Date:"></Label>
             <DatePicker Date="{Binding Path=Model.OpenDate}"></DatePicker>
 
