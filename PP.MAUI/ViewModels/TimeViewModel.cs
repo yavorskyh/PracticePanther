@@ -13,6 +13,7 @@ namespace PP.MAUI.ViewModels
 {
     public class TimeViewModel : INotifyPropertyChanged
     {
+        public Project Project { get; set; }
         public Time Model { get; set; }
         public int TimeID { get; set; }
 
@@ -20,7 +21,9 @@ namespace PP.MAUI.ViewModels
         {
             get
             {
-                return new ObservableCollection<Time>(TimeService.Current.Times);
+                return new ObservableCollection<Time>
+                 (TimeService.Current.Times
+                 .Where(t => t.ProjectId == Project.Id));
             }
         }
 
@@ -37,9 +40,18 @@ namespace PP.MAUI.ViewModels
             }
         }
 
-        public void AddOrUpdateTime()
+        public bool AddOrUpdateTime()
         {
+            // Check if Employee exists
+            List<Employee> Employees = EmployeeService.Current.SearchByEmployeeID(Model.EmployeeId).ToList();
+            if (Employees.Count == 0)
+                return false;
+
+            // Set Project ID if adding
+            if (TimeID == 0)
+                Model.ProjectId = Project.Id;
             TimeService.Current.AddOrUpdateTime(Model);
+            return true;
         }
 
         public void RefreshTimes()
@@ -47,23 +59,37 @@ namespace PP.MAUI.ViewModels
             NotifyPropertyChanged(nameof(Times));
         }
 
+        // Add Constructor
+        public TimeViewModel(int projectId)
+        {
+            if (projectId > 0)
+            {
+                Project = ProjectService.Current.GetProject(projectId);
+            }
+            else
+            {
+                Project = new Project();
+            }
+
+            Model = new Time();
+            Model.Date = DateTime.Now;
+            Model.Hours = 0.0m;
+            Model.ProjectId = 0;
+            Model.EmployeeId = 0;
+        }
+
+        // Edit Constructor
+        public TimeViewModel(int projectId,int timeId)
+        {
+            Model = TimeService.Current.GetTime(timeId);
+            TimeID = timeId;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public TimeViewModel()
-        {
-            Model = new Time();
-            Model.Date = DateTime.Now;
-        }
-
-        public TimeViewModel(int TimeId)
-        {
-            Model = TimeService.Current.GetTime(TimeId);
-            TimeID = TimeId;
         }
     }
 }

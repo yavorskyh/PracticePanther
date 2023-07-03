@@ -9,6 +9,7 @@ namespace PP.Library.Models
 {
     public class Time
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public string? Narrative { get; set; }
         public decimal Hours { get; set; }

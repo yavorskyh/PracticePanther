@@ -26,10 +26,27 @@ public partial class ProjectView : ContentPage
     {
         var projectId = (BindingContext as ProjectViewModel).SelectedProject?.Id ?? 0;
         if (projectId == 0) 
-            DisplayAlert("Error", "Please Select a Project", "OK");
-        
+            DisplayAlert("Error", "Please select a project", "OK");
         else
             Shell.Current.GoToAsync($"//EditProject?ProjectID={projectId}&ClientID={ClientID}");
+    }
+
+    private void TimeClicked(object sender, EventArgs e)
+    {
+        var projectId = (BindingContext as ProjectViewModel).SelectedProject?.Id ?? 0;
+        if (projectId == 0)
+            DisplayAlert("Error", "Please select a project", "OK");
+        else
+            Shell.Current.GoToAsync($"//Time?ProjectID={projectId}&ClientID={ClientID}");
+    }
+
+    private void BillsClicked(object sender, EventArgs e)
+    {
+        var projectId = (BindingContext as ProjectViewModel).SelectedProject?.Id ?? 0;
+        if (projectId == 0)
+            DisplayAlert("Error", "Please select a project", "OK");
+        else
+            Shell.Current.GoToAsync($"//AddProject?ProjectID={ClientID}");
     }
 
     private void GoBackClicked(object sender, EventArgs e)

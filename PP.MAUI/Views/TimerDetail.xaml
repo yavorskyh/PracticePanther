@@ -9,6 +9,7 @@
             Padding="30,0"
             VerticalOptions="Center">
             <Label Text="Edit the Time Below..."></Label>
+            
             <Label Text="Date:"></Label>
             <DatePicker Date="{Binding Path=Model.Date}"></DatePicker>
 
@@ -17,9 +18,6 @@
 
             <Label Text="Hours:"></Label>
             <Entry Text="{Binding Path=Model.Hours}"></Entry>
-
-            <Label Text="Project ID:"></Label>
-            <Entry Text="{Binding Path=Model.ProjectId}"></Entry>
 
             <Label Text="Employee ID:"></Label>
             <Entry Text="{Binding Path=Model.EmployeeId}"></Entry>

@@ -79,6 +79,11 @@ namespace PP.Library.Services
                     .Contains(query.ToUpper()));
         }
 
+        public IEnumerable<Employee> SearchByEmployeeID(int id)
+        {
+            return employees.Where(e => e.Id == id);
+        }
+
         private int LastId
         {
             get

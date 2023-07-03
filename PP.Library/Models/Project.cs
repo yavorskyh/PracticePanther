@@ -26,8 +26,8 @@ namespace PP.Library.Models
         public override string ToString()
         {
             return $"{Id}. {ShortName}\n" +
-                $"ClientID: {ClientID}\n" +
-                $"Is Open?: {isActive}";
+                $"Client ID: {ClientID}\n" +
+                $"Is open?: {isActive}";
         }
     }
 }

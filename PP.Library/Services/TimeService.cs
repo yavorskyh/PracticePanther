@@ -33,14 +33,14 @@ namespace PP.Library.Services
         }
         public Time? GetTime(int id)
         {
-            return times.FirstOrDefault(p => p.ProjectId == id);
+            return times.FirstOrDefault(p => p.Id == id);
         }
 
         public void AddOrUpdateTime(Time time)
         {
             if (time != null)
             {
-                var timeToUpdate = times.FirstOrDefault(e => e.ProjectId == time.ProjectId);
+                var timeToUpdate = times.FirstOrDefault(e => e.Id == time.Id);
                 if (timeToUpdate != null)
                 {
                     timeToUpdate.Date = time.Date;
@@ -51,6 +51,7 @@ namespace PP.Library.Services
                 }
                 else
                 {
+                    time.Id = LastId + 1;
                     times.Add(time);
                 }
             }
@@ -69,7 +70,7 @@ namespace PP.Library.Services
 
         public void UpdateTime(Time time)
         {
-            var timeToUpdate = times.FirstOrDefault(p => p.ProjectId == time.ProjectId);
+            var timeToUpdate = times.FirstOrDefault(p => p.Id == time.Id);
             if (timeToUpdate != null)
             {
                 timeToUpdate.Date = time.Date;
@@ -77,6 +78,14 @@ namespace PP.Library.Services
                 timeToUpdate.Hours = time.Hours;
                 timeToUpdate.ProjectId = time.ProjectId;
                 timeToUpdate.EmployeeId = time.EmployeeId;
+            }
+        }
+
+        private int LastId
+        {
+            get
+            {
+                return Times.Any() ? Times.Select(t => t.Id).Max() : 0;
             }
         }
     }
