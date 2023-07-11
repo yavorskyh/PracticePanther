@@ -8,7 +8,7 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
-            <Label Text="Edit the Client Below..."></Label>
+            <Label Text="Edit the Client Below..." FontSize="Title"></Label>
             <Label Text="Open Date:"></Label>
             <DatePicker Date="{Binding Path=Model.OpenDate}"></DatePicker>
 
@@ -21,12 +21,15 @@
             <Entry Text="{Binding Path=Model.Notes}"></Entry>
 
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                <Label Text="Is this Client Active?" VerticalOptions="Center" />
-                <Switch IsToggled="{Binding Path=Model.isActive}" />
+                <Label Text="Is this Client Active? " VerticalOptions="Center" />
+                <Switch IsToggled="{Binding Path=Model.isActive}" Margin="20"/>
             </StackLayout>
 
             <Label Text="Current Projects:"></Label>
             <ListView ItemsSource="{Binding Path=Projects}"></ListView>
+
+            <Label Text="Current Bills:"></Label>
+            <ListView ItemsSource="{Binding Path=Bills}"></ListView>
 
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                 <Button Text="Submit" Clicked="SubmitClicked"></Button>

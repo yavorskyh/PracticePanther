@@ -20,7 +20,7 @@
         ContentTemplate="{DataTemplate local2:ProjectView}"
         Route="Projects" />
     <ShellContent
-        Title="Project Management"
+        Title="Client Management"
         ContentTemplate="{DataTemplate local2:AddClient}"
         Route="AddClient" />
     <ShellContent
@@ -32,7 +32,7 @@
         ContentTemplate="{DataTemplate local2:AddProject}"
         Route="AddProject" />
     <ShellContent
-        Title="Client Management"
+        Title="Project Management"
         ContentTemplate="{DataTemplate local2:EditProject}"
         Route="EditProject" />
     <ShellContent
@@ -44,12 +44,16 @@
         ContentTemplate="{DataTemplate local2:EmployeeDetail}"
         Route="EmployeeDetail" />
     <ShellContent
-        Title="Timer Management"
+        Title="Employee Time Management"
         ContentTemplate="{DataTemplate local2:TimeView}"
         Route="Time" />
     <ShellContent
-        Title="Timer Management"
+        Title="Employee Time Management"
         ContentTemplate="{DataTemplate local2:TimerDetail}"
         Route="TimerDetail" />
+    <ShellContent
+        Title="Billing Management"
+        ContentTemplate="{DataTemplate local2:BillDetail}"
+        Route="BillDetail" />
 
 </Shell>

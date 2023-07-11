@@ -24,10 +24,13 @@
             <Label Text="Client ID:"></Label>
             <Entry Text="{Binding Path=Model.ClientID}"></Entry>
 
-            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                <Label Text="Is this Project Active?" VerticalOptions="Center" />
-                <Switch IsToggled="{Binding Path=Model.isActive}" />
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Is this Project Active?" VerticalOptions="Center"/>
+                <Switch IsToggled="{Binding Path=Model.isActive}" Margin="20"/>
             </StackLayout>
+
+            <Label Text="Current Bill:"></Label>
+            <Label Text="{Binding Path=Bill}"></Label>
 
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                 <Button Text="Submit" Clicked="SubmitClicked"></Button>

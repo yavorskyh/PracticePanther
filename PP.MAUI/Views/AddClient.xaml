@@ -10,7 +10,7 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
-            <Label Text="Create a Client Below..."></Label>
+            <Label Text="Create a Client Below..." FontSize="Title"></Label>
             <Label Text="Open Date:"></Label>
             <DatePicker Date="{Binding Path=Model.OpenDate}"></DatePicker>
 

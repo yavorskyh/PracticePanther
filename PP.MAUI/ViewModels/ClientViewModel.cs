@@ -18,6 +18,14 @@ namespace PP.MAUI.ViewModels
             }
         }
 
+        public List<Bill> Bills
+        {
+            get
+            {
+                return new List<Bill>(BillService.Current.SearchByClientID(ClientID));
+            }
+        }
+
         public ObservableCollection<Client> Clients
         {
             get

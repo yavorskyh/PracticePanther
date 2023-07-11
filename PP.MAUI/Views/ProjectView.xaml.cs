@@ -14,7 +14,13 @@ public partial class ProjectView : ContentPage
 
     private void DeleteClicked(object sender, EventArgs e)
     {
-        (BindingContext as ProjectViewModel).DeleteProject();
+        var projectId = (BindingContext as ProjectViewModel).SelectedProject?.Id ?? 0;
+        if (projectId == 0)
+            DisplayAlert("Error", "Please select a project", "OK");
+        else if (!(BindingContext as ProjectViewModel).CheckBill())
+            DisplayAlert("Error", "Please close all bills under current project", "OK");
+        else
+            (BindingContext as ProjectViewModel).DeleteProject();
     }
 
     private void AddClicked(object sender, EventArgs e)
@@ -40,13 +46,13 @@ public partial class ProjectView : ContentPage
             Shell.Current.GoToAsync($"//Time?ProjectID={projectId}&ClientID={ClientID}");
     }
 
-    private void BillsClicked(object sender, EventArgs e)
+    private void BillClicked(object sender, EventArgs e)
     {
         var projectId = (BindingContext as ProjectViewModel).SelectedProject?.Id ?? 0;
         if (projectId == 0)
             DisplayAlert("Error", "Please select a project", "OK");
         else
-            Shell.Current.GoToAsync($"//AddProject?ProjectID={ClientID}");
+            Shell.Current.GoToAsync($"//BillDetail?ProjectID={projectId}&ClientID={ClientID}");
     }
 
     private void GoBackClicked(object sender, EventArgs e)

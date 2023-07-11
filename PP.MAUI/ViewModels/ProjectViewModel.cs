@@ -26,6 +26,15 @@ namespace PP.MAUI.ViewModels
                 .Where(p => p.ClientID == Client.Id));
             }
         }
+        
+        public Bill Bill
+        {
+            get
+            {
+                return BillService.Current.GetBillByProjectID(Model.Id);
+            }
+        }
+
         public Project SelectedProject { get; set; }
         public void AddProject()
         {
@@ -54,6 +63,13 @@ namespace PP.MAUI.ViewModels
             NotifyPropertyChanged(nameof(Projects));
         }
 
+        public bool CheckBill()
+        {
+            var bill = BillService.Current.GetBillByProjectID(SelectedProject.Id);
+            if (bill != null)
+                return false;
+            return true;
+        }
         public ProjectViewModel(int clientId, int projectId)
         {
 

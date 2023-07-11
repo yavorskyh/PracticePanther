@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.BillDetail"
+             NavigatedTo="OnArriving">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <Label IsVisible="{Binding Path=AddView}" Text="Add the Bill Below..." FontSize="Title"></Label>
+            <Label IsVisible="{Binding Path=EditView}" Text="Bill Information:" FontSize="Title"></Label>
+
+            <Label IsVisible="{Binding Path=EditView}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Project ID: " />
+                        <Span Text="{Binding Path=Model.ProjectId}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label IsVisible="{Binding Path=EditView}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Due Date: " />
+                        <Span Text="{Binding Path=Model.DueDate}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label IsVisible="{Binding Path=EditView}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Current Amount Due: $" />
+                        <Span Text="{Binding Path=Model.TotalAmount}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Grid IsVisible="{Binding Path=EditView}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Edit Project ID: "/>
+                <Entry Grid.Column="1" Text="{Binding Path=Model.ProjectId}"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" IsVisible="{Binding Path=AddView}" Text="What is the bill's due date? "></Label>
+
+                <Label Grid.Column="0" IsVisible="{Binding Path=EditView}" Text="Edit Due Date: "></Label>
+                <DatePicker Grid.Column="1" Date="{Binding Path=Model.DueDate}"></DatePicker>
+            </Grid>
+
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                <Button Text="Submit" Clicked="SubmitClicked"></Button>
+                <Button Text="Delete" IsVisible="{Binding Path=EditView}" Clicked="DeleteClicked"></Button>
+                <Button Text="Cancel" Clicked="CancelClicked"></Button>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

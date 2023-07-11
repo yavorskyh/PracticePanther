@@ -36,6 +36,23 @@ namespace PP.Library.Services
             return bills.FirstOrDefault(b => b.Id == id);
         }
 
+        public Bill? GetBillByProjectID(int id)
+        {
+            return bills.FirstOrDefault(b => b.ProjectId == id);
+        }
+
+        public List<Bill> SearchByClientID(int id)
+        {
+            var projects = ProjectService.Current.Projects.Where(p => p.ClientID == id);
+            var bills = new List<Bill>();
+
+            foreach (var project in projects) 
+                bills.Add(GetBillByProjectID(project.Id));
+            
+
+            return bills;
+        }
+
         public void AddOrUpdateBill(Bill bill)
         {
             if (bill != null)
@@ -43,17 +60,34 @@ namespace PP.Library.Services
                 var billToUpdate = bills.FirstOrDefault(b => b.Id == bill.Id);
                 if (billToUpdate != null)
                 {
-                    billToUpdate.Id = bill.Id;
+                    billToUpdate.ProjectId = bill.ProjectId;
                     billToUpdate.DueDate = bill.DueDate;
-                    billToUpdate.TotalAmount = bill.TotalAmount;
+                    billToUpdate.TotalAmount = TotalAmountCalc(bill.ProjectId);
                 }
                 else
                 {
+                    bill.TotalAmount = TotalAmountCalc(bill.ProjectId);
                     bill.Id = LastId + 1;
                     bills.Add(bill);
                 }
             }
 
+        }
+
+        private decimal TotalAmountCalc(int projectId)
+        {
+            var times = TimeService.Current.Times.Where(t => t.ProjectId == projectId);
+            decimal totalAmount = 0;
+            foreach (Time time in times)
+            {
+                var employee = EmployeeService.Current.GetEmployee(time.EmployeeId);
+                if (employee != null) 
+                {
+                    totalAmount += employee.Rate * time.Hours;
+                }
+            }
+            return totalAmount;
+            
         }
 
         public void DeleteBill(int id)
