@@ -14,8 +14,8 @@
             <Label IsVisible="{Binding Path=EditView}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Project ID: " />
-                        <Span Text="{Binding Path=Model.ProjectId}" />
+                        <Span Text="Project ID: " FontSize="Subtitle" FontAttributes="Bold"/>
+                        <Span Text="{Binding Path=Model.ProjectId}" FontSize="Subtitle" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -23,8 +23,8 @@
             <Label IsVisible="{Binding Path=EditView}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Due Date: " />
-                        <Span Text="{Binding Path=Model.DueDate}" />
+                        <Span Text="Due Date: " FontSize="Subtitle" FontAttributes="Bold"/>
+                        <Span Text="{Binding Path=Model.DueDate}" FontSize="Subtitle"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -32,8 +32,9 @@
             <Label IsVisible="{Binding Path=EditView}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Current Amount Due: $" />
-                        <Span Text="{Binding Path=Model.TotalAmount}" />
+                        <Span Text="Current Amount Due: " FontSize="Subtitle" FontAttributes="Bold"/>
+                        <Span Text="$" FontSize="Subtitle"/>
+                        <Span Text="{Binding Path=Model.TotalAmount}" FontSize="Subtitle"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -44,19 +45,20 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Edit Project ID: "/>
-                <Entry Grid.Column="1" Text="{Binding Path=Model.ProjectId}"/>
+                <Label VerticalOptions="Center" Text="Edit Project ID: "/>
+                <Entry Grid.Column="1" Text="{Binding Path=Model.ProjectId}" Margin="20,0,0,0"/>
+
             </Grid>
 
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" IsVisible="{Binding Path=AddView}" Text="What is the bill's due date? "></Label>
+                <Label Grid.Column="0" IsVisible="{Binding Path=AddView}" VerticalOptions="Center" Text="What is the bill's due date? "></Label>
 
                 <Label Grid.Column="0" IsVisible="{Binding Path=EditView}" Text="Edit Due Date: "></Label>
-                <DatePicker Grid.Column="1" Date="{Binding Path=Model.DueDate}"></DatePicker>
+                <DatePicker Grid.Column="1" Date="{Binding Path=Model.DueDate}" Margin="20,0,0,0"></DatePicker>
             </Grid>
 
 
