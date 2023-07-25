@@ -14,7 +14,7 @@ namespace PP.MAUI.ViewModels
         {
             get
             {
-                return new List<Project>(ProjectService.Current.SearchByClientID(ClientID));
+                return new List<Project>(ProjectService.Current.SearchByClientID(Model.Id));
             }
         }
 
@@ -22,7 +22,7 @@ namespace PP.MAUI.ViewModels
         {
             get
             {
-                return new List<Bill>(BillService.Current.SearchByClientID(ClientID));
+                return new List<Bill>(BillService.Current.SearchByClientID(Model.Id));
             }
         }
 
@@ -31,8 +31,8 @@ namespace PP.MAUI.ViewModels
             get
             {
                 if (string.IsNullOrEmpty(Query)) 
-                { 
-                    return new ObservableCollection<Client>(ClientService.Current.Clients); 
+                {
+                    return new ObservableCollection<Client>(ClientService.Current.Clients);
                 }
                 return new ObservableCollection<Client>(ClientService.Current.Search(Query));
             }
@@ -64,7 +64,7 @@ namespace PP.MAUI.ViewModels
 
         public void AddClient()
         {
-            ClientService.Current.AddClient(Model);
+            ClientService.Current.AddOrUpdateClient(Model);
         }
 
         public bool UpdateClient() 
@@ -75,7 +75,7 @@ namespace PP.MAUI.ViewModels
                     return false;
             }
 
-            ClientService.Current.UpdateClient(Model);
+            ClientService.Current.AddOrUpdateClient(Model);
             return true;
         }
 
@@ -112,8 +112,14 @@ namespace PP.MAUI.ViewModels
 
         public ClientViewModel(int clientId)
         {
-            Model = ClientService.Current.GetClient(clientId);
-            ClientID = clientId;
+            if(clientId > 0)
+            {
+                Model = ClientService.Current.GetClient(clientId);
+            }
+            else
+            {
+                Model = new Client();
+            }   
         }
     }
 }

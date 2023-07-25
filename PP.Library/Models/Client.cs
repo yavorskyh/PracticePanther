@@ -12,7 +12,7 @@ namespace PP.Library.Models
         public int Id { get; set; }
         public DateTime OpenDate { get; set; }
         public DateTime CloseDate { get; set; }
-        public Boolean isActive { get; set; }
+        public Boolean isActive { get; set; } = true;
         public string? Name { get; set; }
         public string? Notes { get; set; }
 

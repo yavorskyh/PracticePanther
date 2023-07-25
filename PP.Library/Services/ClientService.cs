@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using PP.Library.Models;
+using PP.Library.Utilities;
 
 namespace PP.Library.Services
 {
@@ -31,69 +34,78 @@ namespace PP.Library.Services
         private List<Client> clients;
         private ClientService()
         {
-            clients = new List<Client>();
+            RefreshClients();
         }
         public List<Client> Clients 
         { 
-            get { return clients; } 
+            get {
+                
+                return clients ?? new List<Client>(); 
+            } 
         }
         public Client? GetClient(int id)
         {
-            return clients.FirstOrDefault(c => c.Id == id);
+            var response = new WebRequestHandler()
+                    .Get($"/Client/{id}")
+                    .Result;
+            var client = JsonConvert.DeserializeObject<Client>(response);
+            return client;
+            //return Clients.FirstOrDefault(c => c.Id == id);
         }
 
-        public void AddClient(Client? client)
+        public void AddOrUpdateClient(Client client)
         {
-            if (client != null)
-            {
-                if (client.Id == 0)
-                {
-                    client.Id = LastId + 1;
-                }
-                clients.Add(client);
-            }
-        }
-
-        public void UpdateClient(Client client) 
-        {
-            var clientToUpdate = clients.FirstOrDefault(c => c.Id == client.Id);
-            if (clientToUpdate != null) 
-            {
-                clientToUpdate.Name = client.Name;
-                clientToUpdate.OpenDate = client.OpenDate;
-                clientToUpdate.CloseDate = client.CloseDate;
-                clientToUpdate.Notes = client.Notes;
-                clientToUpdate.isActive = client.isActive;
-            }
+            var response
+                = new WebRequestHandler().Post("/Client", client).Result;
+            RefreshClients();
         }
 
         public void Read()
         {
-            clients.ForEach(Console.WriteLine);
+            Clients.ForEach(Console.WriteLine);
         }
 
         public void DeleteClient(int id) 
         {
-            var clientToRemove = clients.FirstOrDefault(c => c.Id == id);
+            var clientToRemove = Clients.FirstOrDefault(c => c.Id == id);
+            if (clientToRemove != null)
+            {
+                var response = new WebRequestHandler().Delete($"/Client/Delete/{id}").Result;
+            }
+            RefreshClients();
+            /*var clientToRemove = Clients.FirstOrDefault(c => c.Id == id);
             if (clientToRemove != null) 
             {
-                clients.Remove(clientToRemove);
-            }
-            
+                Clients.Remove(clientToRemove);
+            }*/
+
         }
 
         public IEnumerable<Client> Search(string query)
         {
-            return clients
-                .Where(c => c.Name.ToUpper()
-                    .Contains(query.ToUpper()));
+
+            var response = new WebRequestHandler().Get($"/Client?query={query}").Result;
+            var clients = JsonConvert.
+                DeserializeObject<List<Client>>(response) ?? new List<Client>();
+            return clients ?? new List<Client>();
+            /*return Clients
+                 .Where(c => c.Name.ToUpper()
+                     .Contains(query.ToUpper()));*/
+        }
+
+        private void RefreshClients()
+        {
+            var response = new WebRequestHandler().Get("/Client").Result;
+            clients = JsonConvert.
+                DeserializeObject<List<Client>>(response) ?? new List<Client>();
+            clients = clients.OrderBy(c => c.Id).ToList();
         }
 
         private int LastId
         {
             get
             {
-                return clients.Any() ? clients.Select(c => c.Id).Max() : 0;
+                return Clients.Any() ? Clients.Select(c => c.Id).Max() : 0;
             }
         }
     }
