@@ -18,7 +18,7 @@ namespace PP.Library.Models
         {
             return $"Project ID: {ProjectId}\n" +
                 $"Due Date: {DueDate}\n" +
-                $"Total Amount Due: {TotalAmount}";
+                $"Total Amount Due: {TotalAmount:N2}";
         }
     }
 }

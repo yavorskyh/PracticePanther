@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -39,7 +40,7 @@ namespace PP.Library.Services
         public List<Client> Clients 
         { 
             get {
-                
+                RefreshClients();
                 return clients ?? new List<Client>(); 
             } 
         }
@@ -99,14 +100,6 @@ namespace PP.Library.Services
             clients = JsonConvert.
                 DeserializeObject<List<Client>>(response) ?? new List<Client>();
             clients = clients.OrderBy(c => c.Id).ToList();
-        }
-
-        private int LastId
-        {
-            get
-            {
-                return Clients.Any() ? Clients.Select(c => c.Id).Max() : 0;
-            }
         }
     }
 }
